@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import alertSound from "./button-sound.mp3";
 
 const Count = (props) => {
   const [count, setCount] = useState(props.time);
   const [minute, setMinute] = useState(0);
   const [second, setSecond] = useState(0);
   const [start, setStart] = useState(false);
+
+  const sound = new Audio(alertSound);
 
   useEffect(() => {
     if (start && count >= 0) {
@@ -14,10 +17,14 @@ const Count = (props) => {
         setMinute(timeLeft.m);
         setSecond(timeLeft.s);
       }, 1000);
-      return () => clearInterval(secsLeft);
+      return () => {
+        clearInterval(secsLeft);
+      };
     } else {
       console.log(props.completionMessage);
     }
+
+    sound.play();
     // we keep track when to rerender the hook, aka when the start is changed to true
   }, [start, count]);
 
