@@ -11,7 +11,6 @@ export default function App() {
         time={4 * 60}
         completionMessage="Scoop top layer of floating coffee"
       />
-
       <Count
         title="6 Minutes"
         time={6 * 60}

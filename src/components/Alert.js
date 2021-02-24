@@ -1,11 +1,17 @@
 import React from "react";
-import Sound from "./button-sound.mp3";
-import useSound from "use-sound";
+import soundFx from "./button-sound.mp3";
 
 const Alert = () => {
-  const [play] = useSound(Sound);
+  const sound = new Audio(soundFx);
 
-  return <button onClick={play}>Boop!</button>;
+  const handleClick = () => {
+    sound.play();
+  };
+  return (
+    <div>
+      <button onClick={handleClick}>ALERT!</button>
+    </div>
+  );
 };
 
 export default Alert;
