@@ -1,9 +1,11 @@
 import React from "react";
 import Count from "./Count";
+import Alert from "./Alert";
 
 export default function App() {
   return (
     <div className="App">
+      <Alert />
       <Count
         title="4 Minutes"
         time={4 * 60}
