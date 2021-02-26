@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { phaseTwoContext, phaseOneContext } from "./Customizer.js";
 
+import alertSound from './test-sound.mp3';
+
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
@@ -14,12 +16,14 @@ const Timer = () => {
   const phaseTwoLength = useContext(phaseTwoContext);
   const phaseOneLength = useContext(phaseOneContext);
 
+  const soundFx = new Audio(alertSound);
+
   useEffect(() => {
     const interval = setInterval(() => {
       if (timerOn) {
         setTimerLength((timerLength) => timerLength - 1);
       }
-    }, 1000);
+    }, 10);
     if (timerOn) {
       setTimerDone(false);
     }
@@ -53,10 +57,12 @@ const Timer = () => {
 
   useEffect(() => {
     if (sessionType === "phaseOne" && timerDone) {
-      console.log("Your coffee is done!!");
+      console.log("Countdown finished - Your coffee is done!!");
+      soundFx.play()
     }
     if (sessionType === "phaseTwo" && timerDone) {
-      console.log("Scoop!!");
+      console.log("Countdown finished - Scoop!!");
+      soundFx.play()
     }
   }, [sessionType, timerDone]);
 
@@ -72,7 +78,7 @@ const Timer = () => {
           size="large"
           onClick={() => {
             setTimerOn(!timerOn);
-            console.log("play started sound");
+            console.log(`Countdown Started For: ${sessionType}`);
           }}
         >
           {timerOn ? "Pause" : "Run"}
