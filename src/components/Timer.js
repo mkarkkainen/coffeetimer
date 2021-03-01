@@ -6,6 +6,7 @@ import alertSound from './test-sound.mp3';
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
+
 const Timer = () => {
   const [timerLength, setTimerLength] = useState(4);
   const [timerOn, setTimerOn] = useState(false);
@@ -23,7 +24,7 @@ const Timer = () => {
       if (timerOn) {
         setTimerLength((timerLength) => timerLength - 1);
       }
-    }, 10);
+    }, 1000);
     if (timerOn) {
       setTimerDone(false);
     }
