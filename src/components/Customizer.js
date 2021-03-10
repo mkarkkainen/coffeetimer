@@ -10,6 +10,8 @@ const Customizer = (props) => {
 
   const [phaseTwoLength, setPhaseTwoLength] = useState(6);
 
+  console.log(props.children)
+
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       <phaseOneContext.Provider value={phaseOneLength}>
@@ -28,13 +30,17 @@ const Customizer = (props) => {
               prevLength === 0 ? 0 : prevLength - 1
             )
           }
-        >-</Button>
+        >
+          -
+        </Button>
         <Button
           color="primary"
           variant="contained"
           size="large"
           onClick={() => setPhaseOneLength(phaseOneLength + 1)}
-        >+</Button>
+        >
+          +
+        </Button>
       </Grid>
       <Grid item>
         <Typography>Brewing Stage: {phaseTwoLength}</Typography>
@@ -47,13 +53,17 @@ const Customizer = (props) => {
               prevLength === 0 ? 0 : prevLength - 1
             )
           }
-        >-</Button>
+        >
+          -
+        </Button>
         <Button
           color="primary"
           variant="contained"
           size="large"
           onClick={() => setPhaseTwoLength(phaseTwoLength + 1)}
-        >+</Button>
+        >
+          +
+        </Button>
       </Grid>
     </Grid>
   );

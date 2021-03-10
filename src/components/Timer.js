@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { phaseTwoContext, phaseOneContext } from "./Customizer.js";
 
-import alertSound from './test-sound.mp3';
+import alertSound from "./test-sound.mp3";
 
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-
 
 const Timer = () => {
   const [timerLength, setTimerLength] = useState(4);
@@ -59,11 +58,11 @@ const Timer = () => {
   useEffect(() => {
     if (sessionType === "phaseOne" && timerDone) {
       console.log("Countdown finished - Your coffee is done!!");
-      soundFx.play()
+      soundFx.play();
     }
     if (sessionType === "phaseTwo" && timerDone) {
       console.log("Countdown finished - Scoop!!");
-      soundFx.play()
+      soundFx.play();
     }
   }, [sessionType, timerDone]);
 

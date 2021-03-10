@@ -1,10 +1,10 @@
 import React from "react";
 import Timer from "./Timer";
-import Ratio from './Ratio';
+import Timer2 from './Timer/Timer'
+import Ratio from "./Ratio";
 import Customizer from "./Customizer.js";
 
 import { makeStyles } from "@material-ui/core/styles";
-
 
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -14,35 +14,37 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%"
+    width: "100%",
   },
   button: {
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   instructions: {
     marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1)
-  }
+    marginBottom: theme.spacing(1),
+  },
 }));
 
 const getSteps = () => {
   return ["Step 1", "Step 2", "Step 3", "Step 4"];
-}
+};
 
 const getStepContent = (step) => {
   switch (step) {
     case 0:
       return <Ratio />;
     case 1:
-      return <Customizer><Timer /></Customizer>
-    ;
+      return (
+        <Customizer>
+          <Timer />
+        </Customizer>
+      );
     case 2:
-      return "This is the bit I really care about!";
+      return <Timer2 length={6} />
     default:
-      return "Unknown step";
+      return "Done";
   }
-}
-
+};
 
 export default function App() {
   const classes = useStyles();
@@ -73,28 +75,15 @@ export default function App() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleSkip = () => {
-    if (!isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
-    }
-
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped((prevSkipped) => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
-  };
-
   const handleReset = () => {
     setActiveStep(0);
   };
 
   return (
     <div className="App">
-    <Typography variant="h2" align="center">Coffee Timer</Typography>
+      <Typography variant="h2" align="center">
+        French Pressin'
+      </Typography>
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps = {};
@@ -135,16 +124,6 @@ export default function App() {
               >
                 Back
               </Button>
-              {isStepOptional(activeStep) && (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleSkip}
-                  className={classes.button}
-                >
-                  Skip
-                </Button>
-              )}
 
               <Button
                 variant="contained"
